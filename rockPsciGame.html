@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+
+    <title>R P S </title>
+</head>
+<body>
+
+    <style>
+    html {
+      box-sizing: border-box;
+      background: rgb(187, 186, 186);
+      font-family: 'helvetica neue';
+      font-size: 20px;
+      font-weight: 200;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    .rockPaperSci {
+     
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+
+     
+    }
+    
+    .rps {
+      background: #6B0F9C;
+      box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1);
+      color: white;
+      text-align: center;
+      align-items: center;
+      /* Safari transitionend event.propertyName === flex */
+      /* Chrome + FF transitionend event.propertyName === flex-grow */
+      padding: 125px;
+      background-size: cover;
+      background-position: center;
+      flex: 1;
+      display: flex;
+    }
+    .rock{background-image: url(https://images.unsplash.com/photo-1614032686163-bdc24c13d0b6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2574&q=80);}
+    .paper{background-image: url(https://images.unsplash.com/photo-1614032686158-b880f7e82c18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80);}
+    .scissors{background-image: url(https://images.unsplash.com/photo-1614032686099-e648d6dea9b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80);}
+
+    h1 , p{
+        font-family: 'Amatic SC', cursive;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+      font-size: 2em;
+        text-align: center;
+    }
+
+    .rps > * {
+      color: rgb(53, 53, 53);
+      background-color: azure;
+      margin: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .rps p {
+      text-transform: uppercase;
+      font-family: 'Amatic SC', cursive;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+      font-size: 3em;
+    }
+
+    </style>
+    <h1>Welcome to fugazi Rock Paper Scissors game!</h1>
+
+    <div class="rockPaperSci">
+        <div class="rps rock">
+            <p>Rock</p>
+        </div>
+        <div class="rps paper">
+            <p>Paper</p>
+        </div>
+        <div class="rps scissors">
+            <p>scissors</p>
+        </div>
+
+    <script>
+        let getComputerChoice = () => 
+        {
+            let x = Math.floor(Math.random() * 3);
+            let choice 
+            if(x == 0)
+            {
+                choice = "rock";
+            }
+            else if(x == 1)
+            {
+                choice = "paper";
+            }
+            else
+            {
+                choice = "scissors";
+            }
+            computer.innerHTML = "computer choice: "+ choice;
+            return choice;
+        }
+        function playRound(playerSelection, computerSelection) 
+        {
+            if(playerSelection === "rock" &&  computerSelection === "paper" || playerSelection === "paper" &&  computerSelection === "scissors" || playerSelection === "scissors" &&  computerSelection === "paper" ) 
+            {
+                return "You Lose!";
+            }
+            else if (playerSelection === "rock" &&  computerSelection === "scissors" || playerSelection === "paper" &&  computerSelection === "rock" || playerSelection === "scissors" &&  computerSelection === "paper" )
+            {
+                return "You Win!";
+            }
+            else{
+                return "Draw!";
+            }
+        }
+
+     function userChoice(){
+           if (this.className.includes('rock')){
+            uChoice = 'rock';
+            
+           }else if(this.className.includes('paper')) {
+            uChoice = 'paper';
+      
+           }else{
+            uChoice = 'scissors';
+           
+           }
+            user.innerHTML = "your choice: "+ uChoice;
+           result.innerHTML = playRound(uChoice,getComputerChoice());
+           
+        }
+
+        const rockPaperSci = document.querySelectorAll('.rps');
+        rockPaperSci.forEach(rockPaperSci => rockPaperSci.addEventListener('click',userChoice))
+       
+        let user = document.createElement('p'); // is a node
+        document.body.appendChild(user);
+      
+        let computer = document.createElement('p'); // is a node
+        document.body.appendChild(computer);
+
+        let result = document.createElement('p'); // is a node
+        document.body.appendChild(result);
+
+
+    </script>
+</body>
+</html>
